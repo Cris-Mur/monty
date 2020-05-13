@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #ifndef _STACK_S
 #define _STACK_S
@@ -42,6 +43,20 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct g_vars - global variables structure
+ * @cmd: opcode word
+ * @psh_dat: push input data
+ *
+ * Description: Structure of the gloval variables works
+ * like an global variable
+ */
+typedef struct g_vars
+{
+	char cmd[5];
+	int psh_dat;
+} g_vars_t;
 
 #endif /*_OPCODE_S*/
 
