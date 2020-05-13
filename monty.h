@@ -60,6 +60,8 @@ typedef struct g_vars
 
 #endif /*_OPCODE_S*/
 
+extern g_vars_t var;
+
 /*opfunctions*/
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
@@ -70,6 +72,8 @@ void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 /*opfunctions*/
 
+void selected(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *head);
 /*
 Función prototipo para opcode
 void name(stack_t **stack, unsigned int line_number);

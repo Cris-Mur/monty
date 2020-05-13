@@ -1,5 +1,13 @@
 #include "monty.h"
 
+g_vars_t var;
+
+void push_ERR(size_t l_n)
+{
+	fprintf(stderr, "L<%lu>: usage: push integer\n", l_n);
+	exit (EXIT_FAILURE);
+}
+
 /**
  * main - function that execute a monty program that run the bytecodes line by
  * line from a  File.m
@@ -7,7 +15,6 @@
  * @argv: name file
  * Return: 0 Success, if the number is different is error
  */
-g_vars_t var;
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +22,7 @@ int main(int argc, char *argv[])
 	char *buffer = NULL;
 	size_t num_bytes, l_n;
 	char *tok = NULL;
+	stack_t *cosito = NULL;
 
 	if (argc > 2 || argc < 2)
 	{
@@ -34,18 +42,23 @@ int main(int argc, char *argv[])
 		{
 			tok = strtok(buffer, " \t\n");
 			strcpy(var.cmd, tok);
-			printf("Line %lu: cmd: %s\n", l_n, var.cmd);
 			while(tok)
 			{
 				tok = strtok(NULL, " \t\n");
 				/*convert*/
-				if (tok && isdigit(tok[0]))
+				if (tok)
 				{
-					var.psh_dat = atoi(tok);
-					printf("Line %lu: psh_dat: %d\n", l_n, var.psh_dat);
+					if (isdigit(tok[0]))
+						var.psh_dat = atoi(tok);
+					else if(strcmp(tok, "push"))
+					{
+						push_ERR(l_n);
+					}
 				}
+
 			}
 			/*select function*/
+			selected(&cosito, l_n);
 		}
 		free(buffer);
 		fclose(input);
