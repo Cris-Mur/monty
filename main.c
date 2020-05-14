@@ -2,6 +2,51 @@
 g_vars_t var;
 
 /**
+ * opfile - handler of a file
+ * @path: input path of the file
+ * Return: void
+ */
+void opfile(char *path)
+{
+	FILE *input;
+	char *buffer = NULL;
+	size_t num_bytes, l_n;
+	char *tok = NULL;
+	stack_t *cosito = NULL;
+
+	if (path)
+	{
+		input = fopen(path, "r");
+		if (!input)
+		{
+			fprintf(stderr, "Error: Can't open file %s\n", path);
+			exit(EXIT_FAILURE);
+		}
+		for (l_n = 1; getline(&buffer, &num_bytes, input) != -1; l_n++)
+		{
+			tok = strtok(buffer, " \t\n");
+			if (tok)
+			{
+				strcpy(var.cmd, tok);
+				while (tok)
+				{
+					tok = strtok(NULL, " \t\n");
+					/*convert*/
+					if (tok && !strcmp(var.cmd, "push"))
+					{
+						valid_dig(tok, l_n);
+						break;
+					}
+				}
+				/*select function*/
+				selected(&cosito, l_n);
+			}
+		}
+		free(buffer);
+		fclose(input);
+	}
+}
+/**
  * main - function that execute a monty program that run the bytecodes line by
  * line from a  File.m
  * @argc: number of arguments
@@ -11,43 +56,12 @@ g_vars_t var;
 
 int main(int argc, char *argv[])
 {
-	FILE *input;
-	char *buffer = NULL;
-	size_t num_bytes, l_n;
-	char *tok = NULL;
-	stack_t *cosito = NULL;
-
 	if (argc > 2 || argc < 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	if (argv[1])
-	{
-		input = fopen(argv[1], "r");
-		if (!input)
-		{
-			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-			exit(EXIT_FAILURE);
-		}
-		for (l_n = 1; getline(&buffer, &num_bytes, input) != -1; l_n++)
-		{
-			tok = strtok(buffer, " \t\n");
-			strcpy(var.cmd, tok);
-			while (tok)
-			{
-				tok = strtok(NULL, " \t\n");
-				/*convert*/
-				if (tok)
-					valid_dig(tok, l_n);
-
-			}
-			/*select function*/
-			selected(&cosito, l_n);
-		}
-		free(buffer);
-		fclose(input);
-	}
+	opfile(argv[1]);
 	return (0);
 }
