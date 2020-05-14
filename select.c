@@ -31,6 +31,7 @@ void selected(stack_t **stack, unsigned int line_number)
 	{
 		if (!strcmp(func[i].opcode, var.cmd))
 		{
+			strcpy(var.cmd, "     ");
 			func[i].f(stack, line_number);
 			return;
 		}

@@ -1,6 +1,5 @@
 #include "monty.h"
 g_vars_t var;
-
 /**
  * main - function that execute a monty program that run the bytecodes line by
  * line from a  File.m
@@ -8,7 +7,6 @@ g_vars_t var;
  * @argv: name file
  * Return: 0 Success, if the number is different is error
  */
-
 int main(int argc, char *argv[])
 {
 	FILE *input;
@@ -16,7 +14,7 @@ int main(int argc, char *argv[])
 	size_t num_bytes, l_n;
 	stack_t *cosito = NULL;
 
-	if (argc > 2 || argc < 2)
+	if (argc != 2)
 		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	if (argv[1])
 	{
