@@ -68,8 +68,13 @@ void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
+void add_(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void sub_(stack_t **stack, unsigned int line_number);
+void div_(stack_t **stack, unsigned int line_number);
+void mul_(stack_t **stack, unsigned int line_number);
+void mod_(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
 /*opfunctions*/
 
 void selected(stack_t **stack, unsigned int line_number);

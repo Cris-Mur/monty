@@ -7,13 +7,16 @@
  */
 int valid_tok(char *token, int line_num)
 {
-	char list_opt[][8] = {"push", "pall", "print", "pop", "swap", "add", "nop"};
-	int i = 1;
+	char list_opt[][8] = {
+		"push", "pall", "pint",
+		"pop", "swap", "add", "nop",
+		"sub", "mul", "div", "mod", "pchar"};
+	int i = 0;
 
-	for (; i < 7; i++)
+	for (; i < 13; i++)
 		if (strcmp(token, list_opt[i]) == 0 || token[0] == '#')
 			break;
-	if (i == 6)
+	if (i == 13)
 	{
 		fprintf(stderr, "L<%d>: unknown instruction <%s>\n", line_num, token);
 		exit(EXIT_FAILURE);

@@ -13,11 +13,10 @@ void selected(stack_t **stack, unsigned int line_number)
 	instruction_t func[] = {
 		{"push", push},	{"pall", pall},
 		{"pint", pint}, {"pop", pop},
-		{"swap", swap},
-	      /*
-	       *{"add", add},
-	       *{"nop", nop},
-	       */
+		{"swap", swap}, {"add", add_},
+		{"nop", nop},{"sub", sub_},
+		{"mul", mul_},{"div", div_},
+		{"mod", mod_},{"pchar", pchar},
 		/*
 		 *  {"", },
 		*/

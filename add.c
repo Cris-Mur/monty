@@ -6,7 +6,7 @@
  * @line_number: line of the exec
  * Return: void
  */
-void add(stack_t **stack, unsigned int line_number)
+void add_(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = NULL;
 
