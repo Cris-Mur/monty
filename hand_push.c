@@ -8,19 +8,12 @@
  */
 void valid_dig(char *tok, size_t l_n)
 {
-	if (tok[0] == '-')
-	{
-		if (isdigit(tok[1]))
-			var.psh_dat = atoi(tok);
-		else if (strcmp(tok, "push"))
-			push_ERR(l_n);
-		return;
-	}
+	int i;
 
-	if (isdigit(tok[0]))
-		var.psh_dat = atoi(tok);
-	else if (strcmp(tok, "push"))
-		push_ERR(l_n);
+	for (i = 0; tok[i] != '\0'; i++)
+		if (isdigit(tok[i]) == 0 && tok[i] != 48 && tok[i] != '-')
+			push_ERR(l_n);
+	var.psh_dat = atoi(tok);
 }
 
 /**

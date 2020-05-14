@@ -12,17 +12,12 @@ g_vars_t var;
 int main(int argc, char *argv[])
 {
 	FILE *input;
-	char *buffer = NULL;
+	char *buffer = NULL, *tok = NULL;
 	size_t num_bytes, l_n;
-	char *tok = NULL;
 	stack_t *cosito = NULL;
 
 	if (argc > 2 || argc < 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
+		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	if (argv[1])
 	{
 		input = fopen(argv[1], "r");
@@ -34,20 +29,24 @@ int main(int argc, char *argv[])
 		for (l_n = 1; getline(&buffer, &num_bytes, input) != -1; l_n++)
 		{
 			tok = strtok(buffer, " \t\n");
-			strcpy(var.cmd, tok);
-			while (tok)
+			if (tok == NULL)
+				continue;
+			else if (valid_tok(tok, l_n) == 0)
+				strcpy(var.cmd, tok);
+			if (strcmp(tok, "push") == 0)
 			{
 				tok = strtok(NULL, " \t\n");
-				/*convert*/
-				if (tok)
+				if (tok == NULL)
+				{
+					fprintf(stderr, "L<%lu>: usage: push integer\n", l_n);
+					exit(EXIT_FAILURE);
+				}
+				else
 					valid_dig(tok, l_n);
-
 			}
-			/*select function*/
 			selected(&cosito, l_n);
 		}
-		free(buffer);
-		fclose(input);
+		free(buffer), fclose(input);
 	}
 	return (0);
 }
