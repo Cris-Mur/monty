@@ -12,4 +12,4 @@ ASCII
 >--. +++.    be array(3)
 <++++++. ++. rt array(2)
 -----. -.    on array(2)
->>.         \n  array(4)
+>>.          \n array(4)

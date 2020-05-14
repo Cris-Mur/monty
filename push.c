@@ -8,7 +8,7 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new = NULL, *tmp;
+	stack_t *new = NULL;
 
 	if (!stack)
 		return;
@@ -24,7 +24,5 @@ void push(stack_t **stack, unsigned int line_number)
 	if (*stack)
 		(*stack)->prev = new;
 	*stack = new;
-	tmp = new;
-	new = new->next;
-	free(tmp);
+	free(new);
 }
