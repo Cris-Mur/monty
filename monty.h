@@ -20,9 +20,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 #endif /*_STACK_S*/
@@ -40,8 +40,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -56,6 +56,7 @@ typedef struct g_vars
 {
 	char cmd[5];
 	int psh_dat;
+	stack_t **head;
 } g_vars_t;
 
 #endif /*_OPCODE_S*/
@@ -75,5 +76,7 @@ Función prototipo para opcode
 void name(stack_t **stack, unsigned int line_number);
 
 */
-
+void hand_opt(stack_t **head, char *token, unsigned int line_num);
+int valid_tok(char *token, int line_num);
+int valid_dig(char *str, int line_num);
 #endif /*_MONTY_H*/

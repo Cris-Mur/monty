@@ -12,43 +12,40 @@ g_vars_t var;
 int main(int argc, char *argv[])
 {
 	FILE *input;
-	char *buffer = NULL;
+	char *buffer = NULL, *tok = NULL;
 	size_t num_bytes, l_n;
-	char *tok = NULL;
 
-	if (argc > 2 || argc < 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
+	if (argc != 2)
+		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	if (argv[1])
 	{
 		input = fopen(argv[1], "r");
 		if (!input)
 		{
-			fprintf(stderr,"Error: Can't open file %s\n", argv[1]);
-			exit (EXIT_FAILURE);
+			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+			exit(EXIT_FAILURE);
 		}
 		for (l_n = 1; getline(&buffer, &num_bytes, input) != -1; l_n++)
 		{
 			tok = strtok(buffer, " \t\n");
-			strcpy(var.cmd, tok);
-			printf("Line %lu: cmd: %s\n", l_n, var.cmd);
-			while(tok)
+			if (tok == NULL)
+				continue;
+			else if (valid_tok(tok, l_n) == 0)
+				strcpy(var.cmd, tok);
+			if (strcmp(tok, "push") == 0)
 			{
 				tok = strtok(NULL, " \t\n");
-				/*convert*/
-				if (tok && isdigit(tok[0]))
+				if (tok == NULL)
 				{
-					var.psh_dat = atoi(tok);
-					printf("Line %lu: psh_dat: %d\n", l_n, var.psh_dat);
+					fprintf(stderr, "L<%lu>: usage: push integer\n", l_n);
+					exit(EXIT_FAILURE);
 				}
+				else
+					var.psh_dat = valid_dig(tok, l_n);
 			}
-			/*select function*/
+			var.head = NULL, hand_opt(var.head, var.cmd, l_n);
 		}
-		free(buffer);
-		fclose(input);
+		free(buffer), fclose(input);
 	}
-	return 0;
+	return (0);
 }
