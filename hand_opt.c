@@ -8,7 +8,6 @@
 void hand_opt(stack_t **head, char *token, unsigned int line_num)
 {
 	int opt_num = 0;
-
 	instruction_t opt[] = {{"push", push}, {"pall", pall}, {"pint", pint},
 		{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}, {NULL, NULL}};
 
