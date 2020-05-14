@@ -2,7 +2,9 @@
 
 /**
  * push - funtion that push new node into stack
- * @
+ * @stack: input structure
+ * @line_number: line exec function
+ * Return: void
  */
 void push(stack_t **stack, unsigned int line_number)
 {

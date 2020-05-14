@@ -2,6 +2,8 @@
 
 /**
  * selected - fuction that select function for opcode
+ * @stack: input structure
+ * @line_number: exec line_number
  * Return: void
  */
 
@@ -10,10 +12,15 @@ void selected(stack_t **stack, unsigned int line_number)
 	int i;
 	instruction_t func[] = {
 		{"push", push},	{"pall", pall},
-		{"pint", pint},{"pop", pop},
-	      /*{"swap", swap},	{"add", add},
-		{"nop", nop},*/
-		/*{"", },*/
+		{"pint", pint}, {"pop", pop},
+		{"swap", swap},
+	      /*
+	       *{"add", add},
+	       *{"nop", nop},
+	       */
+		/*
+		 *  {"", },
+		*/
 		{NULL, NULL}
 	};
 

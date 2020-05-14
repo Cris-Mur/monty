@@ -74,6 +74,8 @@ void nop(stack_t **stack, unsigned int line_number);
 
 void selected(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
+void valid_dig(char *tok, size_t l_n);
+void push_ERR(size_t l_n);
 /*
 Función prototipo para opcode
 void name(stack_t **stack, unsigned int line_number);
