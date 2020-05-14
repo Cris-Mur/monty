@@ -26,14 +26,14 @@ int main(int argc, char *argv[])
 		}
 		for (l_n = 1; getline(&buffer, &num_bytes, input) != -1; l_n++)
 		{
-			tok = strtok(buffer, " \t\n");
+			tok = strtok(buffer, " \n\t");
 			if (tok == NULL)
 				continue;
 			else if (valid_tok(tok, l_n) == 0)
 				strcpy(var.cmd, tok);
 			if (strcmp(tok, "push") == 0)
 			{
-				tok = strtok(NULL, " \t\n");
+				tok = strtok(NULL, " \n\t");
 				if (tok == NULL)
 				{
 					fprintf(stderr, "L<%lu>: usage: push integer\n", l_n);
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 				else
 					valid_dig(tok, l_n);
 			}
-			selected(&cosito, l_n);
+			selected(&cosito, l_n), tok = NULL, var.psh_dat = 0;
 		}
 		free(buffer), fclose(input);
 	}
