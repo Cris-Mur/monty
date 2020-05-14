@@ -10,8 +10,6 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = NULL;
 
-	if (!stack)
-		return;
 	new = malloc(sizeof(stack_t));
 	(void)line_number;
 	if (!new)
