@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 			}
 			selected(&cosito, l_n), tok = NULL, var.psh_dat = 0;
 		}
-		free(buffer), fclose(input);
+		free_stack(cosito), free(buffer), fclose(input);
 	}
 	return (0);
 }
