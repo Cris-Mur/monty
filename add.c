@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * add - funtion that add value into top and next to
+ * add_ - funtion that add value into top and next to
  * @stack: input structure
  * @line_number: line of the exec
  * Return: void

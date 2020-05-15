@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
  * valid_tok - Function that valided a name option
- * @str_tok: string for validate
+ * @token: string for validate
  * @line_num: line number from file
  * Return: 0 Succes or exit EXIT_FAILURE
  */
@@ -18,7 +18,7 @@ int valid_tok(char *token, int line_num)
 			break;
 	if (i == 13)
 	{
-		fprintf(stderr, "L<%d>: unknown instruction <%s>\n", line_num, token);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, token);
 		exit(EXIT_FAILURE);
 	}
 	return (0);

@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 				tok = strtok(NULL, " \n\t");
 				if (tok == NULL)
 				{
-					fprintf(stderr, "L<%lu>: usage: push integer\n", l_n);
+					fprintf(stderr, "L%lu: usage: push integer\n", l_n);
 					exit(EXIT_FAILURE);
 				}
 				else

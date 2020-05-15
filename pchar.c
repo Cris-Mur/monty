@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * pint - print top value
+ * pchar - print top value
  * @stack: input structure
  * @line_number: line of the execution
  * Return: void
